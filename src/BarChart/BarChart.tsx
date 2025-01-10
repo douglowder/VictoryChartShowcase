@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { Text, Box, Button, ButtonText } from "@gluestack-ui/themed";
-import { CartesianChart, Bar, useChartPressState } from "victory-native";
-import { Circle, useFont, vec } from "@shopify/react-native-skia";
-import { View, useColorScheme } from "react-native";
-import { COLORMODES } from "@gluestack-style/react/lib/typescript/types";
-import { LinearGradient, Text as SKText } from "@shopify/react-native-skia";
-import { useDerivedValue } from "react-native-reanimated";
+import { Text, Box, Button, ButtonText, Pressable } from '@gluestack-ui/themed';
+import { CartesianChart, Bar, useChartPressState } from 'victory-native';
+import { Circle, useFont, vec } from '@shopify/react-native-skia';
+import { View, useColorScheme } from 'react-native';
+import { COLORMODES } from '@gluestack-style/react/lib/typescript/types';
+import { LinearGradient, Text as SKText } from '@shopify/react-native-skia';
+import { useDerivedValue } from 'react-native-reanimated';
 
-const inter = require("../../roboto.ttf");
+const inter = require('../../roboto.ttf');
 
 const DATA = (length: number = 10) =>
   Array.from({ length }, (_, index) => ({
@@ -26,10 +26,10 @@ export const BarChart = () => {
     y: { listenCount: 0 },
   });
 
-  const isDark = colorMode === "dark";
+  const isDark = colorMode === 'dark';
 
   const value = useDerivedValue(() => {
-    return "$" + state.y.listenCount.value.value;
+    return '$' + state.y.listenCount.value.value;
   }, [state]);
 
   const textYPosition = useDerivedValue(() => {
@@ -57,7 +57,7 @@ export const BarChart = () => {
         <CartesianChart
           xKey="month"
           padding={5}
-          yKeys={["listenCount"]}
+          yKeys={['listenCount']}
           domain={{ y: [0, 100] }}
           domainPadding={{ left: 50, right: 50, top: 30 }}
           axisOptions={{
@@ -65,10 +65,10 @@ export const BarChart = () => {
             tickCount: 5,
             formatXLabel: (value) => {
               const date = new Date(2023, value - 1);
-              return date.toLocaleString("default", { month: "short" });
+              return date.toLocaleString('default', { month: 'short' });
             },
-            lineColor: isDark ? "#71717a" : "#d4d4d8",
-            labelColor: isDark ? "white" : "black",
+            lineColor: isDark ? '#71717a' : '#d4d4d8',
+            labelColor: isDark ? 'white' : 'black',
           }}
           chartPressState={state}
           data={data}
@@ -79,7 +79,7 @@ export const BarChart = () => {
                 <Bar
                   points={points.listenCount}
                   chartBounds={chartBounds}
-                  animate={{ type: "timing", duration: 1000 }}
+                  animate={{ type: 'timing', duration: 1000 }}
                   roundedCorners={{
                     topLeft: 10,
                     topRight: 10,
@@ -88,7 +88,7 @@ export const BarChart = () => {
                   <LinearGradient
                     start={vec(0, 0)}
                     end={vec(0, 400)}
-                    colors={["green", "#90ee9050"]}
+                    colors={['green', '#90ee9050']}
                   />
                 </Bar>
 
@@ -96,7 +96,7 @@ export const BarChart = () => {
                   <>
                     <SKText
                       font={toolTipFont}
-                      color={isDark ? "white" : "black"}
+                      color={isDark ? 'white' : 'black'}
                       x={textXPosition}
                       y={textYPosition}
                       text={value}
@@ -105,7 +105,7 @@ export const BarChart = () => {
                       cx={state.x.position}
                       cy={state.y.listenCount.position}
                       r={8}
-                      color={"grey"}
+                      color={'grey'}
                       opacity={0.8}
                     />
                   </>
@@ -116,13 +116,13 @@ export const BarChart = () => {
         </CartesianChart>
       </Box>
       <Box paddingTop={30} width="95%" height="20%" alignItems="center">
-        <Button
+        <Pressable
           onPress={() => {
             setData(DATA(5));
           }}
         >
           <ButtonText size="lg">Update Chart</ButtonText>
-        </Button>
+        </Pressable>
       </Box>
     </Box>
   );

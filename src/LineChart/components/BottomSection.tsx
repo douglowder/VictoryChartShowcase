@@ -4,11 +4,12 @@ import {
   ButtonText,
   Card,
   HStack,
+  Pressable,
   Text,
   VStack,
-} from "@gluestack-ui/themed";
-import React from "react";
-import { DATA, DATA2 } from "../utils/data";
+} from '@gluestack-ui/themed';
+import React from 'react';
+import { DATA, DATA2 } from '../utils/data';
 
 interface ChartData {
   day: number;
@@ -44,7 +45,7 @@ export const BottomSection = ({ chartData, setChartData }: Props) => {
           </HStack>
         </Card>
       </Box>
-      <Button
+      <Pressable
         onPress={() => {
           if (chartData === DATA) {
             setChartData(DATA2);
@@ -54,7 +55,7 @@ export const BottomSection = ({ chartData, setChartData }: Props) => {
         }}
       >
         <ButtonText size="lg">Update Chart</ButtonText>
-      </Button>
+      </Pressable>
     </>
   );
 };
