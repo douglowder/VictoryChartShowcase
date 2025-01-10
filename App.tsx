@@ -15,6 +15,16 @@ import { PieChart } from "./src/PieChart/PieChart";
 import { WavyBars } from "./src/WavyBars/WavyBars";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
+import {
+  configureReanimatedLogger,
+  ReanimatedLogLevel,
+} from 'react-native-reanimated';
+
+configureReanimatedLogger({
+  level: ReanimatedLogLevel.warn,
+  strict: false,
+});
+
 if (__DEV__) {
   const ignoreWarns = [
     "CartesianChart: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.",
